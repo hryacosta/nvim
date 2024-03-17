@@ -235,7 +235,7 @@ require('lazy').setup({
   --    require('Comment').setup({})
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim', opts = {}, lazy = true },
 
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following lua:
@@ -599,7 +599,7 @@ require('lazy').setup({
         'css-lsp',
         'html-lsp',
         'js-debug-adapter',
-        -- 'typescript-language-server',
+        'typescript-language-server',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
