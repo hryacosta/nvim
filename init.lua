@@ -598,6 +598,7 @@ require('lazy').setup({
         -- 'rust_analizer',
         'css-lsp',
         'html-lsp',
+        'js-debug-adapter',
         -- 'typescript-language-server',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
