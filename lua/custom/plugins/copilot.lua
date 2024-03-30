@@ -1,36 +1,36 @@
 return {
+
   {
     'zbirenbaum/copilot.lua',
-    cmd = 'Copilot',
     event = 'InsertEnter',
+    cmd = 'Copilot',
+    build = ':Copilot auth',
     opts = {
-      suggestion = {
-        enable = false,
-      },
-      panel = {
-        enable = false,
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+      filetypes = {
+        markdown = true,
+        help = true,
       },
     },
   },
   {
-    'hrsh7th/nvim-cmp',
+    'zbirenbaum/copilot-cmp',
+    opts = {},
+    config = function(_, opts)
+      local copilot_cmp = require 'copilot_cmp'
+      copilot_cmp.setup(opts)
+    end,
+  },
+  {
+    'CopilotC-Nvim/CopilotChat.nvim',
+    branch = 'canary',
     dependencies = {
-      {
-        'zbirenbaum/copilot-cmp',
-        config = function(_, opts)
-          require('copilot_cmp').setup(opts)
-        end,
-      },
+      { 'zbirenbaum/copilot.lua' },
+      { 'nvim-lua/plenary.nvim' },
     },
-    opts = {
-      sources = {
-        { name = 'nvim_lsp', group_index = 2 },
-        { name = 'copilot', group_index = 2 },
-        { name = 'luasnip', group_index = 2 },
-        { name = 'buffer', group_index = 2 },
-        { name = 'nvim_lua', group_index = 2 },
-        { name = 'path', group_index = 2 },
-      },
-    },
+    config = function()
+      require('CopilotChat').setup()
+    end,
   },
 }

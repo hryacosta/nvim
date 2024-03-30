@@ -541,12 +541,12 @@ require('lazy').setup({
       local servers = {
         clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        pyright = {},
         rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
-        --    https://github.com/pmizio/typescript-tools.nvim
+        --    hhttps://github.com/pmizio/typescript-tools.nvimttps://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
         tsserver = {},
@@ -717,22 +717,85 @@ require('lazy').setup({
       --    set up the ones that are useful for you.
       'rafamadriz/friendly-snippets',
       'hrsh7th/cmp-nvim-lua',
-      -- 'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-buffer',
     },
     config = function()
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
+      local kind_icons = {
+        Array = ' ',
+        Boolean = '󰨙 ',
+        Class = ' ',
+        Codeium = '󰘦 ',
+        Color = ' ',
+        Control = ' ',
+        Collapsed = ' ',
+        Constant = '󰏿 ',
+        Constructor = ' ',
+        Copilot = ' ',
+        Enum = ' ',
+        EnumMember = ' ',
+        Event = ' ',
+        Field = ' ',
+        File = ' ',
+        Folder = ' ',
+        Function = '󰊕 ',
+        Interface = ' ',
+        Key = ' ',
+        Keyword = ' ',
+        Method = '󰊕 ',
+        Module = ' ',
+        Namespace = '󰦮 ',
+        Null = ' ',
+        Number = '󰎠 ',
+        Object = ' ',
+        Operator = ' ',
+        Package = ' ',
+        Property = ' ',
+        Reference = ' ',
+        Snippet = ' ',
+        -- Snippet = '',
+        String = ' ',
+        Struct = '󰆼 ',
+        TabNine = '󰏚 ',
+        -- Text = ' ',
+        Text = '󰉿',
+        TypeParameter = ' ',
+        Unit = ' ',
+        -- Value = ' ',
+        Value = '󰎠',
+        Variable = '󰀫 ',
+      }
+
       luasnip.config.setup {}
 
       cmp.setup {
+        view = {
+          entries = { name = 'custom', selection_order = 'near_cursor' },
+        },
+        formatting = {
+          -- fields = { 'kind', 'abbr', 'menu' },
+          format = function(entry, item)
+            item.kind = string.format('%s %s', kind_icons[item.kind], item.kind)
+
+            -- item.menu = ({
+            --   buffer = '[Buffer]',
+            --   nvim_lsp = '[LSP]',
+            --   luasnip = '[LuaSnip]',
+            --   nvim_lua = '[Lua]',
+            --   latex_symbols = '[LaTeX]',
+            -- })[entry.source.name]
+
+            return item
+          end,
+        },
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
           end,
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
-
         -- For an understanding of why these mappings were
         -- chosen, you will need to read `:help ins-completion`
         --
@@ -776,6 +839,9 @@ require('lazy').setup({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+          { name = 'copilot' },
+          { name = 'nvim_lua' },
+          { name = 'buffer' },
         },
       }
     end,
@@ -799,11 +865,11 @@ require('lazy').setup({
     end,
     config = function()
       require('tokyonight').setup {
-        transparent = true,
-        styles = {
-          sidebars = 'transparent',
-          floats = 'transparent',
-        },
+        -- transparent = true,
+        -- styles = {
+        --   sidebars = 'transparent',
+        --   floats = 'transparent',
+        -- },
       }
     end,
   },
@@ -944,6 +1010,7 @@ require('lazy').setup({
       start = '🚀',
       task = '📌',
       lazy = '💤 ',
+      Copilot = '',
     },
   },
 })
