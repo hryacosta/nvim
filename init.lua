@@ -865,11 +865,11 @@ require('lazy').setup({
     end,
     config = function()
       require('tokyonight').setup {
-        -- transparent = true,
-        -- styles = {
-        --   sidebars = 'transparent',
-        --   floats = 'transparent',
-        -- },
+        transparent = true,
+        styles = {
+          sidebars = 'transparent',
+          floats = 'transparent',
+        },
       }
     end,
   },
@@ -1014,6 +1014,5 @@ require('lazy').setup({
     },
   },
 })
-
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
