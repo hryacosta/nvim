@@ -853,7 +853,8 @@ require('lazy').setup({
     end,
   },
 
-  { -- You can easily change to a different colorscheme.
+  {
+    -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is
     --
@@ -870,13 +871,13 @@ require('lazy').setup({
       vim.cmd.hi 'Comment gui=none'
     end,
     config = function()
-      require('tokyonight').setup {
-        transparent = true,
-        styles = {
-          sidebars = 'transparent',
-          floats = 'transparent',
-        },
-      }
+      -- require('tokyonight').setup {
+      --   transparent = true,
+      --   styles = {
+      --     sidebars = 'transparent',
+      --     floats = 'transparent',
+      --   },
+      -- }
     end,
   },
 
@@ -956,7 +957,7 @@ require('lazy').setup({
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
-      highlight = { enable = true },
+      highlight = { enable = false },
       indent = {
         enable = true,
         disable = {
