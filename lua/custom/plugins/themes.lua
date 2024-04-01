@@ -2,7 +2,6 @@ return {
 
   {
     'projekt0n/github-nvim-theme',
-    priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       require('github-theme').setup {}
       -- vim.cmd 'colorscheme github_dark_tritanopia'
@@ -10,7 +9,8 @@ return {
   },
   {
     'rose-pine/neovim',
-    as = 'rose-pine',
+    name = 'rose-pine',
+    priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       require('rose-pine').setup {}
       vim.cmd 'colorscheme rose-pine'
