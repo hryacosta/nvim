@@ -387,6 +387,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>gh', ':Telescope file_history history<CR>', { desc = '[F]ile history' })
       vim.keymap.set('n', '<leader>gl', ':Telescope file_history log<CR>', { desc = '[F]ile history log' })
       vim.keymap.set('n', '<leader>gf', ':Telescope file_history files<CR>', { desc = '[F]ile history files' })
+      vim.keymap.set('n', '<leader>gu', ':UndotreeToggle<CR>', { desc = '[U]ndo toogle' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
       -- Slightly advanced example of overriding default behavior and theme
