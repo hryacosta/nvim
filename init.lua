@@ -320,6 +320,15 @@ require('lazy').setup({
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      {
+        'dawsers/telescope-file-history.nvim',
+        config = function()
+          require('file_history').setup {
+            backup_dir = '~/.file-history-git',
+            git_cmd = 'git',
+          }
+        end,
+      },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -363,7 +372,7 @@ require('lazy').setup({
       -- Enable telescope extensions, if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
-
+      pcall(require('telescope').load_extension 'file_history')
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
@@ -375,6 +384,9 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+      vim.keymap.set('n', '<leader>gh', ':Telescope file_history history<CR>', { desc = '[F]ile history' })
+      vim.keymap.set('n', '<leader>gl', ':Telescope file_history log<CR>', { desc = '[F]ile history log' })
+      vim.keymap.set('n', '<leader>gf', ':Telescope file_history files<CR>', { desc = '[F]ile history files' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
       -- Slightly advanced example of overriding default behavior and theme
