@@ -957,7 +957,7 @@ require('lazy').setup({
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
-      highlight = { enable = false },
+      highlight = { enable = true },
       indent = {
         enable = true,
         disable = {

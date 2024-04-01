@@ -8,6 +8,5 @@ return {
     config = function()
       require('telescope').load_extension 'lazygit'
     end,
-    lazy = false,
   },
 }
