@@ -26,6 +26,10 @@ vim.keymap.set('n', 'gR', function()
   require('trouble').toggle 'lsp_references'
 end, { desc = 'trouble lsp references' })
 
+vim.keymap.set('n', '<leader>ft', function()
+  require('edgy').toggle 'bottom'
+end, { desc = 'Open terminal' })
+
 -- gray
 vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { bg = 'NONE', strikethrough = true, fg = '#808080' })
 -- blue
