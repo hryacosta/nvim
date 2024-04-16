@@ -30,8 +30,6 @@ vim.keymap.set('n', '<leader>ft', function()
   require('edgy').toggle 'bottom'
 end, { desc = 'Open terminal' })
 
--- vim.api.nvim_set_keymap('n', ':', '<cmd>FineCmdline<CR>', { noremap = true })
-
 -- gray
 vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { bg = 'NONE', strikethrough = true, fg = '#808080' })
 -- blue
