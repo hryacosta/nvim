@@ -430,6 +430,7 @@ require('lazy').setup({
     config = function()
       -- Brief Aside: **What is LSP?**
       --
+
       -- LSP is an acronym you've probably heard, but might not understand what it is.
       --
       -- LSP stands for Language Server Protocol. It's a protocol that helps editors
