@@ -785,7 +785,7 @@ require('lazy').setup({
         },
         formatting = {
           -- fields = { 'kind', 'abbr', 'menu' },
-          format = function(entry, item)
+          format = function(_, item)
             item.kind = string.format('%s %s', kind_icons[item.kind], item.kind)
 
             -- item.menu = ({
