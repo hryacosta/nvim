@@ -21,13 +21,25 @@ return {
     end,
   },
   {
+    -- 'iruzo/matrix-nvim',
     'luisiacc/the-matrix.nvim',
     config = function()
-      -- require('thematrix').setup {}
-
-      vim.cmd 'colorscheme thematrix'
       -- vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
       -- vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+
+      -- this will setup snipes color background
+      vim.api.nvim_set_hl(0, 'CmpNormal', { bg = '#FF0000' })
+
+      require('cmp').setup {
+        window = {
+          completion = {
+            border = 'rounded',
+            winhighlight = 'Normal:CmpNormal',
+          },
+        },
+      }
+
+      vim.cmd 'colorscheme thematrix'
     end,
   },
 }
