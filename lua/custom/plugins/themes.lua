@@ -3,7 +3,7 @@ return {
   {
     'projekt0n/github-nvim-theme',
     config = function()
-j     require('github-theme').setup {}
+      require('github-theme').setup {}
       -- vim.cmd 'colorscheme github_dark_default'
       -- vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
       -- vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
