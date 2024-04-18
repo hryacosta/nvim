@@ -3,7 +3,7 @@ return {
   {
     'projekt0n/github-nvim-theme',
     config = function()
-      require('github-theme').setup {}
+j     require('github-theme').setup {}
       -- vim.cmd 'colorscheme github_dark_default'
       -- vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
       -- vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
@@ -28,16 +28,16 @@ return {
       -- vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
 
       -- this will setup snipes color background
-      vim.api.nvim_set_hl(0, 'CmpNormal', { bg = '#FF0000' })
+      -- vim.api.nvim_set_hl(0, 'CmpNormal', { bg = '#FF0000' })
 
-      require('cmp').setup {
-        window = {
-          completion = {
-            border = 'rounded',
-            winhighlight = 'Normal:CmpNormal',
-          },
-        },
-      }
+      -- require('cmp').setup {
+      --   window = {
+      --     completion = {
+      --       border = 'rounded',
+      --       winhighlight = 'Normal:CmpNormal',
+      --     },
+      --   },
+      -- }
 
       -- vim.cmd 'colorscheme thematrix'
     end,
