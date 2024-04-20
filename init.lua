@@ -611,6 +611,7 @@ require('lazy').setup({
         'html-lsp',
         'js-debug-adapter',
         'typescript-language-server',
+        'tailwindcss-language-server',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
