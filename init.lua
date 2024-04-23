@@ -560,11 +560,16 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
         tsserver = {},
-        --
+
+        kotlin_language_server = {},
+
+        jdtls = {},
 
         cssls = {},
 
         html = {},
+
+        tailwindcss = {},
 
         lua_ls = {
           -- cmd = {...},
@@ -603,6 +608,8 @@ require('lazy').setup({
         'gradle-language-server',
         'dart-debug-adapter',
         'swift-mesonlsp',
+        'jdtls',
+        'java-test',
         'java-debug-adapter',
         -- 'node-debug2-adapter',
         'lua-language-server',
@@ -612,6 +619,8 @@ require('lazy').setup({
         'js-debug-adapter',
         'typescript-language-server',
         'tailwindcss-language-server',
+        'kotlin-language-server',
+        'kotlin-debug-adapter',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -648,7 +657,8 @@ require('lazy').setup({
         markdown = { 'prettierd' },
         python = { 'black' },
         yaml = { 'prettierd' },
-        java = { 'google-java-format' },
+        java = { 'jdtls' },
+        kotlin = { 'kotlin-language-server' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
