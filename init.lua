@@ -565,11 +565,11 @@ require('lazy').setup({
 
         jdtls = {},
 
-        cssls = {},
+        tailwindcss = {},
+
+        -- cssls = {},
 
         html = {},
-
-        tailwindcss = {},
 
         lua_ls = {
           -- cmd = {...},
@@ -659,6 +659,7 @@ require('lazy').setup({
         yaml = { 'prettierd' },
         java = { 'jdtls' },
         kotlin = { 'kotlin-language-server' },
+
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
