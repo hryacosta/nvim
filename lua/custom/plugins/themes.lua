@@ -5,6 +5,7 @@ return {
     config = function()
       require('github-theme').setup {}
       -- vim.cmd 'colorscheme github_dark_default'
+      vim.cmd 'colorscheme github_dark_high_contrast'
       -- vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
       -- vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
     end,
@@ -44,7 +45,6 @@ return {
   },
   {
     'rebelot/kanagawa.nvim',
-
     config = function()
       require('kanagawa').setup {
         colors = {
@@ -91,7 +91,7 @@ return {
         },
       }
 
-      vim.cmd 'colorscheme kanagawa'
+      -- vim.cmd 'colorscheme kanagawa'
     end,
   },
 }
