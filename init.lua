@@ -567,9 +567,11 @@ require('lazy').setup({
 
         tailwindcss = {},
 
-        -- cssls = {},
+        cssls = {},
 
         html = {},
+
+        cpplint = {},
 
         lua_ls = {
           -- cmd = {...},
@@ -607,7 +609,6 @@ require('lazy').setup({
         'eslint-lsp',
         'gradle-language-server',
         'dart-debug-adapter',
-        'swift-mesonlsp',
         'jdtls',
         'java-test',
         'java-debug-adapter',
@@ -621,6 +622,7 @@ require('lazy').setup({
         'tailwindcss-language-server',
         'kotlin-language-server',
         'kotlin-debug-adapter',
+        'cpplint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -970,6 +972,7 @@ require('lazy').setup({
         'luadoc',
         'kotlin',
         'go',
+        'swift',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
