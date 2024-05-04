@@ -2,7 +2,6 @@ return {
   {
     'codota/tabnine-nvim',
     build = './dl_binaries.sh',
-    lazy = false,
     config = function()
       require('tabnine').setup {
         disable_auto_comment = true,

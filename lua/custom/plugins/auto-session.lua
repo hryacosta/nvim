@@ -1,11 +1,13 @@
 return {
   {
     'rmagatti/auto-session',
+    lazy = false,
     config = function()
-      local auto_session = require 'auto-session'
-      auto_session.setup {
+      require('auto-session').setup {
         auto_restore_enabled = true,
         auto_session_suppress_dirs = { '~/', '~/Dev', '~/Downloads/', '~/Desktop', '~/Documents/' },
+        auto_session_enabled = true,
+        auto_save_enabled = true,
       }
 
       local keymap = vim.keymap
