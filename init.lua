@@ -435,7 +435,6 @@ require('lazy').setup({
       end, { desc = '[S]earch [N]eovim files' })
     end,
   },
-
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -588,6 +587,8 @@ require('lazy').setup({
 
         kotlin_language_server = {},
 
+        ktlint = {},
+
         jdtls = {},
 
         tailwindcss = {},
@@ -647,6 +648,8 @@ require('lazy').setup({
         'tailwindcss-language-server',
         'kotlin-language-server',
         'kotlin-debug-adapter',
+        'ktlint',
+        'prettier',
         'cpplint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -672,10 +675,10 @@ require('lazy').setup({
       notify_on_error = true,
       formatters_by_ft = {
         lua = { 'stylua' },
-        javascript = { 'prettierd' },
-        javascriptreact = { 'prettierd' },
-        typescript = { 'prettierd' },
-        typescriptreact = { 'prettierd' },
+        javascript = { 'prettierd', 'prettier' },
+        javascriptreact = { 'prettierd', 'prettier' },
+        typescript = { 'prettierd', 'prettier' },
+        typescriptreact = { 'prettierd', 'prettier' },
         html = { 'prettierd' },
         sh = { 'shfmt' },
         dart_format = {
