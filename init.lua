@@ -542,16 +542,44 @@ require('lazy').setup({
           --
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
+          -- if client and client.server_capabilities.documentHighlightProvider then
+          --   vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+          --     buffer = event.buf,
+          --     callback = vim.lsp.buf.document_highlight,
+          --   })
+          --
+          --   vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+          --     buffer = event.buf,
+          --     callback = vim.lsp.buf.clear_references,
+          --   })
+          -- end
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client.server_capabilities.documentHighlightProvider then
+            local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = true })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
+              group = highlight_augroup,
               callback = vim.lsp.buf.document_highlight,
             })
 
             vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
               buffer = event.buf,
+              group = highlight_augroup,
               callback = vim.lsp.buf.clear_references,
             })
+
+            vim.api.nvim_create_autocmd('LspDetach', {
+              group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
+              callback = function(event2)
+                vim.lsp.buf.clear_references()
+                vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+              end,
+            })
+          end
+          if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+            map('<leader>th', function()
+              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+            end, '[T]oggle Inlay [H]ints')
           end
         end,
       })
@@ -583,7 +611,7 @@ require('lazy').setup({
         --    hhttps://github.com/pmizio/typescript-tools.nvimttps://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        tsserver = {},
+        -- tsserver = {},
 
         kotlin_language_server = {},
 
@@ -632,7 +660,7 @@ require('lazy').setup({
         'clang-format',
         'prettierd',
         'eslint_d',
-        'eslint-lsp',
+        -- 'eslint-lsp',
         'gradle-language-server',
         'dart-debug-adapter',
         'jdtls',
@@ -644,7 +672,7 @@ require('lazy').setup({
         'css-lsp',
         'html-lsp',
         'js-debug-adapter',
-        'typescript-language-server',
+        -- 'typescript-language-server',
         'tailwindcss-language-server',
         'kotlin-language-server',
         'kotlin-debug-adapter',
@@ -671,6 +699,7 @@ require('lazy').setup({
 
   { -- Autoformat
     'stevearc/conform.nvim',
+    lazy = false,
     opts = {
       notify_on_error = true,
       formatters_by_ft = {
@@ -714,7 +743,6 @@ require('lazy').setup({
         return {
           timeout_ms = 500,
           lsp_fallback = true,
-          async = true,
         }
       end,
       format_after_save = {
@@ -739,8 +767,18 @@ require('lazy').setup({
           end
           return 'make install_jsregexp'
         end)(),
+        dependencies = {
+          -- `friendly-snippets` contains a variety of premade snippets.
+          --    See the README about individual language/framework/plugin snippets:
+          --    https://github.com/rafamadriz/friendly-snippets
+          -- {
+          --   'rafamadriz/friendly-snippets',
+          --   config = function()
+          --     require('luasnip.loaders.from_vscode').lazy_load()
+          --   end,
+          -- },
+        },
       },
-      --     -- autopairing of (){}[] etc
       {
         'windwp/nvim-autopairs',
         opts = {
@@ -970,8 +1008,8 @@ require('lazy').setup({
 
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    tag = 'v0.9.1',
-    -- build = ':TSUpdate',
+    -- tag = 'v0.9.1',
+    build = ':TSUpdate',
     opts = {
       ensure_installed = {
         'bash',
@@ -1016,6 +1054,7 @@ require('lazy').setup({
     config = function(_, opts)
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 
+      require('nvim-treesitter.install').prefer_git = true
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup(opts)
 
@@ -1039,7 +1078,7 @@ require('lazy').setup({
   --
   require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
-
+  require 'kickstart.plugins.lint',
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
