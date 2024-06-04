@@ -612,6 +612,14 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
         -- tsserver = {},
+        eslint = {
+          on_attach = function(client, bufnr)
+            vim.api.nvim_create_autocmd('BufWritePre', {
+              buffer = bufnr,
+              command = 'EslintFixAll',
+            })
+          end,
+        },
 
         kotlin_language_server = {},
 
@@ -660,7 +668,7 @@ require('lazy').setup({
         'clang-format',
         'prettierd',
         'eslint_d',
-        -- 'eslint-lsp',
+        'eslint-lsp',
         'gradle-language-server',
         'dart-debug-adapter',
         'jdtls',
@@ -686,6 +694,7 @@ require('lazy').setup({
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
+
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
