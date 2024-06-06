@@ -439,7 +439,7 @@ require('lazy').setup({
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for neovim
-      'williamboman/mason.nvim',
+      { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -613,7 +613,7 @@ require('lazy').setup({
         --    hhttps://github.com/pmizio/typescript-tools.nvimttps://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
+        tsserver = {},
         eslint = {
           on_attach = function(client, bufnr)
             vim.api.nvim_create_autocmd('BufWritePre', {
@@ -682,7 +682,7 @@ require('lazy').setup({
         'css-lsp',
         'html-lsp',
         'js-debug-adapter',
-        -- 'typescript-language-server',
+        'typescript-language-server',
         'tailwindcss-language-server',
         'kotlin-language-server',
         'kotlin-debug-adapter',
@@ -792,6 +792,7 @@ require('lazy').setup({
       },
       {
         'windwp/nvim-autopairs',
+        event = 'InsertEnter',
         opts = {
           fast_wrap = {},
           disable_filetype = { 'TelescopePrompt', 'vim' },
@@ -1090,6 +1091,8 @@ require('lazy').setup({
   require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
+  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
