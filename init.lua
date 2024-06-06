@@ -614,6 +614,7 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
         tsserver = {},
+
         eslint = {
           on_attach = function(client, bufnr)
             vim.api.nvim_create_autocmd('BufWritePre', {
@@ -669,7 +670,7 @@ require('lazy').setup({
         'clangd',
         'clang-format',
         'prettierd',
-        'eslint_d',
+        -- 'eslint_d',
         'eslint-lsp',
         'gradle-language-server',
         'dart-debug-adapter',
