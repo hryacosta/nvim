@@ -4,8 +4,11 @@ return {
     lazy = false,
     config = function()
       require('auto-session').setup {
+        log_level = 'error',
+
         auto_restore_enabled = true,
-        auto_session_suppress_dirs = { '~/', '~/Dev', '~/Downloads/', '~/Desktop', '~/Documents/' },
+        auto_session_suppress_dirs = { '~/', '~/Dev', '~/Downloads/', '~/Desktop', '~/Documents/', '~/Projectos' },
+
         auto_session_enabled = true,
         auto_save_enabled = true,
       }

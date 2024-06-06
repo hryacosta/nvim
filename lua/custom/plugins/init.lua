@@ -4,7 +4,7 @@
 -- See the kickstart.nvim README for more information
 
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
-vim.keymap.set('n', '<leader>k', '<CMD>Neotree toggle<CR>', { desc = 'Open Neotree' })
+vim.keymap.set('n', '<leader>k', '<CMD>Neotree source=filesystem toggle<CR>', { desc = 'Open Neotree' })
 
 vim.keymap.set('n', '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
 
