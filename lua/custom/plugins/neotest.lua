@@ -4,12 +4,13 @@ return {
     'nvim-neotest/neotest',
     lazy = false,
     dependencies = {
+      'nvim-neotest/nvim-nio',
       'nvim-lua/plenary.nvim',
       'antoinemadec/FixCursorHold.nvim',
       'nvim-treesitter/nvim-treesitter',
       {
         'nvim-neotest/neotest-jest',
-        commit = 'c2118446d770fedb360a91b1d91a7025db86d4f1',
+        -- commit = 'c2118446d770fedb360a91b1d91a7025db86d4f1',
       },
       'sidlatau/neotest-dart',
       'rcasia/neotest-java',
@@ -64,14 +65,24 @@ return {
       end
       opts.adapters = {
         require 'neotest-jest' {
+          discovery = {
+            enabled = false,
+          },
           jestCommand = 'npx jest --coverage --maxWorkers=2 --forceExit',
           -- jestConfigFile = "jest.config.js",
           -- env = { CI = true },
           -- cwd = function(path)
           --   return vim.fn.getcwd()
           -- end,
-          jestConfigFile = function()
-            local file = vim.fn.expand '%:p'
+          -- jestConfigFile = function()
+          --   local file = vim.fn.expand '%:p'
+          --   if string.find(file, '/packages/') then
+          --     return string.match(file, '(.-/[^/]+/)src') .. 'jest.config.ts'
+          --   end
+          --
+          --   return vim.fn.getcwd() .. '/jest.config.ts'
+          -- end,
+          jestConfigFile = function(file)
             if string.find(file, '/packages/') then
               return string.match(file, '(.-/[^/]+/)src') .. 'jest.config.ts'
             end
