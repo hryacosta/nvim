@@ -395,6 +395,7 @@ require('lazy').setup({
       -- Enable telescope extensions, if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
+      pcall(require('telescope').load_extension, 'trouble')
       require('telescope').load_extension 'undo'
 
       -- See `:help telescope.builtin`
@@ -670,8 +671,8 @@ require('lazy').setup({
         'clangd',
         'clang-format',
         'prettierd',
-        -- 'eslint_d',
-        -- 'eslint-lsp',
+        'eslint_d',
+        'eslint-lsp',
         'gradle-language-server',
         'dart-debug-adapter',
         'jdtls',
@@ -726,18 +727,18 @@ require('lazy').setup({
       notify_on_error = true,
       formatters_by_ft = {
         lua = { 'stylua' },
-        javascript = { 'prettierd' },
-        javascriptreact = { 'prettierd' },
-        typescript = { 'prettierd' },
-        typescriptreact = { 'prettierd' },
+        javascript = { 'prettierd', 'prettier' },
+        javascriptreact = { 'prettierd', 'prettier' },
+        typescript = { 'prettierd', 'prettier' },
+        typescriptreact = { 'prettierd', 'prettier' },
         html = { 'prettierd' },
         -- sh = { 'shfmt' },
         dart_format = {
           command = '~/flutter/bin/dart',
         },
-        -- markdown = { 'prettierd' },
+        markdown = { 'prettierd', 'prettier' },
         -- python = { 'black' },
-        -- yaml = { 'prettierd' },
+        yaml = { 'prettierd', 'prettier' },
         java = { 'jdtls' },
         kotlin = { 'kotlin-language-server' },
 

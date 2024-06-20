@@ -9,6 +9,23 @@ return {
       width = 50, -- width of the list when position is left or right
       icons = true, -- use devicons for filenames
       mode = 'workspace_diagnostics', -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+      modes = {
+        mydiags = {
+          mode = 'diagnostics', -- inherit from diagnostics mode
+          filter = {
+            any = {
+              buf = 0, -- current buffer
+              {
+                severity = vim.diagnostic.severity.ERROR, -- errors only
+                -- limit to files in the current project
+                function(item)
+                  return item.filename:find((vim.loop or vim.uv).cwd(), 1, true)
+                end,
+              },
+            },
+          },
+        },
+      },
       severity = nil, -- nil (ALL) or vim.diagnostic.severity.ERROR | WARN | INFO | HINT
       fold_open = '', -- icon used for open folds
       fold_closed = '', -- icon used for closed folds
@@ -45,7 +62,7 @@ return {
       auto_open = false, -- automatically open the list when you have diagnostics
       auto_close = false, -- automatically close the list when you have no diagnostics
       auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
-      auto_fold = false, -- automatically fold a file trouble list at creation
+      auto_fold = true, -- automatically fold a file trouble list at creation
       auto_jump = { 'lsp_definitions' }, -- for the given modes, automatically jump if there is only a single result
       include_declaration = { 'lsp_references', 'lsp_implementations', 'lsp_definitions' }, -- for the given modes, include the declaration of the current symbol in the results
       signs = {
@@ -56,7 +73,7 @@ return {
         information = '',
         other = '',
       },
-      use_diagnostic_signs = false, -- enabling this will use the signs defined in your lsp client
+      use_diagnostic_signs = true,
     },
   },
 }
