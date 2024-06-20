@@ -260,7 +260,7 @@ require('lazy').setup({
   --    require('Comment').setup({})
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim',    opts = {} },
 
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following lua:
@@ -295,7 +295,7 @@ require('lazy').setup({
   -- after the plugin has been loaded:
   --  config = function() ... end
 
-  { -- Useful plugin to show you pending keybinds.
+  {                     -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     config = function() -- This is the function that runs, AFTER loading
@@ -344,7 +344,7 @@ require('lazy').setup({
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
       {
         'debugloop/telescope-undo.nvim',
       },
@@ -445,11 +445,11 @@ require('lazy').setup({
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
-      { 'folke/neodev.nvim', opts = {} },
+      { 'folke/neodev.nvim',       opts = {} },
     },
     config = function()
       -- Brief Aside: **What is LSP?**
@@ -606,7 +606,7 @@ require('lazy').setup({
         clangd = {},
         -- gopls = {},
         pyright = {},
-        rust_analyzer = {},
+        -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -670,8 +670,8 @@ require('lazy').setup({
         'clangd',
         'clang-format',
         'prettierd',
-        -- 'eslint_d',
-        'eslint-lsp',
+        'eslint_d',
+        -- 'eslint-lsp',
         'gradle-language-server',
         'dart-debug-adapter',
         'jdtls',
@@ -712,22 +712,32 @@ require('lazy').setup({
   { -- Autoformat
     'stevearc/conform.nvim',
     lazy = false,
+    keys = {
+      {
+        '<leader>ff',
+        function()
+          require('conform').format { async = true, lsp_fallback = true }
+        end,
+        mode = '',
+        desc = '[F]ormat buffer',
+      },
+    },
     opts = {
       notify_on_error = true,
       formatters_by_ft = {
         lua = { 'stylua' },
-        javascript = { 'prettierd', 'prettier' },
-        javascriptreact = { 'prettierd', 'prettier' },
-        typescript = { 'prettierd', 'prettier' },
-        typescriptreact = { 'prettierd', 'prettier' },
+        javascript = { 'prettierd' },
+        javascriptreact = { 'prettierd' },
+        typescript = { 'prettierd' },
+        typescriptreact = { 'prettierd' },
         html = { 'prettierd' },
-        sh = { 'shfmt' },
+        -- sh = { 'shfmt' },
         dart_format = {
           command = '~/flutter/bin/dart',
         },
-        markdown = { 'prettierd' },
-        python = { 'black' },
-        yaml = { 'prettierd' },
+        -- markdown = { 'prettierd' },
+        -- python = { 'black' },
+        -- yaml = { 'prettierd' },
         java = { 'jdtls' },
         kotlin = { 'kotlin-language-server' },
 
@@ -739,22 +749,24 @@ require('lazy').setup({
         -- javascript = { { "prettierd", "prettier" } },
       },
       format_on_save = function(bufnr)
-        local ignore_filetypes = {}
-        if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
-          return
-        end
-        -- Disable with a global or buffer-local variable
-        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-          return
-        end
-        -- Disable autoformat for files in a certain path
-        local bufname = vim.api.nvim_buf_get_name(bufnr)
-        if bufname:match '/node_modules/' then
-          return
-        end
+        -- local ignore_filetypes = {}
+        -- if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
+        --   return
+        -- end
+        -- -- Disable with a global or buffer-local variable
+        -- if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+        --   return
+        -- end
+        -- -- Disable autoformat for files in a certain path
+        -- local bufname = vim.api.nvim_buf_get_name(bufnr)
+        -- if bufname:match '/node_modules/' then
+        --   return
+        -- end
+
+        local disable_filetypes = { c = true, cpp = true }
         return {
           timeout_ms = 500,
-          lsp_fallback = true,
+          lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
         }
       end,
       format_after_save = {
@@ -783,12 +795,12 @@ require('lazy').setup({
           -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:
           --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
+          {
+            'rafamadriz/friendly-snippets',
+            config = function()
+              require('luasnip.loaders.from_vscode').lazy_load()
+            end,
+          },
         },
       },
       {

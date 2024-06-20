@@ -5,7 +5,7 @@ return {
       windows = {
         preview = true,
         width_focus = 30,
-        width_preview = 30,
+        width_preview = 50,
       },
       options = {
         use_as_default_explorer = false,
