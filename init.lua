@@ -712,7 +712,8 @@ require('lazy').setup({
 
   { -- Autoformat
     'stevearc/conform.nvim',
-    lazy = false,
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
     keys = {
       {
         '<leader>ff',
@@ -732,12 +733,12 @@ require('lazy').setup({
         typescript = { 'prettierd', 'prettier' },
         typescriptreact = { 'prettierd', 'prettier' },
         html = { 'prettierd' },
-        -- sh = { 'shfmt' },
+        sh = { 'shfmt' },
         dart_format = {
           command = '~/flutter/bin/dart',
         },
         markdown = { 'prettierd', 'prettier' },
-        -- python = { 'black' },
+        python = { 'black' },
         yaml = { 'prettierd', 'prettier' },
         java = { 'jdtls' },
         kotlin = { 'kotlin-language-server' },
