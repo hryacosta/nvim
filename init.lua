@@ -770,11 +770,11 @@ require('lazy').setup({
 
         local disable_filetypes = { c = true, cpp = true }
         return {
-          -- timeout_ms = 500,
-          -- lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+          timeout_ms = 500,
+          lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
           async = true,
-          timeout_ms = 2500,
-          lsp_fallback = true,
+          -- timeout_ms = 2500,
+          -- lsp_fallback = true,
         }
       end,
       format_after_save = {
