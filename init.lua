@@ -637,6 +637,8 @@ require('lazy').setup({
 
         tailwindcss = {},
 
+        bashls = {},
+
         cssls = {},
 
         html = {},
@@ -694,6 +696,11 @@ require('lazy').setup({
         'kotlin-debug-adapter',
         'ktlint',
         'cpplint',
+        'bash-language-server',
+        'beautysh',
+        'bash-debug-adapter',
+        'shellharden',
+        'shfmt',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -736,7 +743,8 @@ require('lazy').setup({
         typescript = { 'prettierd' },
         typescriptreact = { 'prettierd' },
         html = { 'prettierd' },
-        sh = { 'shfmt' },
+        -- sh = { 'beautysh', 'prettierd' },
+        bash = { 'beautysh', 'shfmt' },
         dart_format = {
           command = '~/flutter/bin/dart',
         },
@@ -772,7 +780,6 @@ require('lazy').setup({
         return {
           timeout_ms = 500,
           lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-          async = true,
           -- timeout_ms = 2500,
           -- lsp_fallback = true,
         }
