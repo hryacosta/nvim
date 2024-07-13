@@ -502,11 +502,11 @@ require('lazy').setup({
           map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 
           -- Find references for the word under your cursor.
-          map('gr', ':Lspsaga finder def+ref+imp<CR>', '[G]oto [R]eferences')
+          map('gr', '<CMD>Lspsaga finder def+ref+imp<CR>', '[G]oto [R]eferences')
 
-          map('gf', ':Lspsaga outline<CR>', '[G]oto [F]ile [S]tructure')
+          map('gf', '<CMD>Lspsaga outline<CR>', '[G]oto [F]ile [S]tructure')
 
-          map('gi', ':Lspsaga finder imp<CR>', '[G]oto [I]mplementation')
+          map('gi', '<CMD>Lspsaga finder imp<CR>', '[G]oto [I]mplementation')
 
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
@@ -535,9 +535,10 @@ require('lazy').setup({
 
           -- Opens a popup that displays documentation about the word under your cursor
           --  See `:help K` for why this keymap
-          map('K', vim.lsp.buf.hover, 'Hover Documentation')
+          -- map('K', vim.lsp.buf.hover, 'Hover Documentation')
+          map('K', '<CMD>Lspsaga hover_doc<CR>', 'Hover Documentation')
 
-          map('<leader>l', ':Lspsaga term_toggle<CR>', '[O]pen [T]erminal')
+          map('<leader>l', '<cmd>Lspsaga term_toggle<cr>', '[O]pen [T]erminal')
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header
