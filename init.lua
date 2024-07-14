@@ -508,6 +508,8 @@ require('lazy').setup({
 
           map('gi', '<CMD>Lspsaga finder imp<CR>', '[G]oto [I]mplementation')
 
+          map('pd', '<CMD>Lspsaga peek_definition<CR>', '[P]eek [D]efinition')
+
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
           map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
