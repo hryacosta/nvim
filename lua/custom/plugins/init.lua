@@ -68,6 +68,52 @@ wk.add {
     desc = 'Open terminal',
     mode = 'n',
   },
+  { '<leader>l', '<cmd>Lspsaga term_toggle<cr>', desc = '[O]pen [T]erminal', mode = 'n', hidden = true },
+
+  { '<leader>e', vim.diagnostic.open_float, desc = 'Show diagnostic [E]rror messages', mode = 'n', hidden = true },
+  { '<leader>q', vim.diagnostic.setloclist, desc = 'Open diagnostic [Q]uickfix list', mode = 'n', hidden = true },
+
+  {
+    '<leader>a',
+    function()
+      local harpoon = require 'harpoon'
+      harpoon:list():append()
+    end,
+    desc = 'harpoon mark file',
+    mode = 'n',
+    hidden = true,
+  },
+  {
+    '<C-e>',
+    function()
+      -- harpoon.toggle_quick_menu()
+      local harpoon = require 'harpoon'
+      harpoon.ui:toggle_quick_menu(harpoon:list())
+    end,
+    mode = 'n',
+    hidden = true,
+  },
+
+  {
+    '<leader>b',
+    function(opt)
+      local dap = require 'dap'
+      dap.toggle_breakpoint(opt)
+    end,
+    desc = 'Debug: Toggle Breakpoint',
+    mode = 'n',
+    hidden = true,
+  },
+  {
+    '<leader>B',
+    function()
+      local dap = require 'dap'
+      dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+    end,
+    desc = 'Debug: Set Breakpoint',
+    mode = 'n',
+    hidden = true,
+  },
 }
 vim.opt.spell = true
 vim.opt.spelllang = { 'en', 'es' }
