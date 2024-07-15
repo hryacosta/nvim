@@ -302,15 +302,17 @@ require('lazy').setup({
       require('which-key').setup()
 
       -- Document existing key chains
-      require('which-key').register {
-        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-        ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-        ['<leader>t'] = { name = '[T]est', _ = 'which_key_ignore' },
-        ['<leader>x'] = { name = '[X]trouble', _ = 'which_key_ignore' },
+      local key = require 'which-key'
+
+      key.add {
+        { '<leader>c', group = '[C]ode' },
+        { '<leader>d', group = '[D]ocument' },
+        { '<leader>r', group = '[R]ename' },
+        { '<leader>s', group = '[S]earch' },
+        { '<leader>w', group = '[W]orkspace' },
+        { '<leader>g', group = '[G]it' },
+        { '<leader>t', group = '[T]est' },
+        { '<leader>x', group = '[X]trouble' },
       }
     end,
   },
@@ -502,13 +504,11 @@ require('lazy').setup({
           map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 
           -- Find references for the word under your cursor.
-          map('gr', '<CMD>Lspsaga finder def+ref+imp<CR>', '[G]oto [R]eferences')
+          map('gr', ':Lspsaga finder def+ref+imp<CR>', '[G]oto [R]eferences')
 
-          map('gf', '<CMD>Lspsaga outline<CR>', '[G]oto [F]ile [S]tructure')
+          map('gf', ':Lspsaga outline<CR>', '[G]oto [F]ile [S]tructure')
 
-          map('gi', '<CMD>Lspsaga finder imp<CR>', '[G]oto [I]mplementation')
-
-          map('pd', '<CMD>Lspsaga peek_definition<CR>', '[P]eek [D]efinition')
+          map('gi', ':Lspsaga finder imp<CR>', '[G]oto [I]mplementation')
 
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
@@ -537,10 +537,9 @@ require('lazy').setup({
 
           -- Opens a popup that displays documentation about the word under your cursor
           --  See `:help K` for why this keymap
-          -- map('K', vim.lsp.buf.hover, 'Hover Documentation')
-          map('K', '<CMD>Lspsaga hover_doc<CR>', 'Hover Documentation')
+          map('K', vim.lsp.buf.hover, 'Hover Documentation')
 
-          map('<leader>l', '<cmd>Lspsaga term_toggle<cr>', '[O]pen [T]erminal')
+          map('<leader>l', ':Lspsaga term_toggle<CR>', '[O]pen [T]erminal')
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header

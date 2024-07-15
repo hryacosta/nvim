@@ -8,7 +8,7 @@ return {
       height = 10, -- height of the trouble list when position is top or bottom
       width = 50, -- width of the list when position is left or right
       icons = true, -- use devicons for filenames
-      mode = 'workspace_diagnostics', -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+      mode = 'document_diagnostics', -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
       modes = {
         mydiags = {
           mode = 'diagnostics', -- inherit from diagnostics mode
