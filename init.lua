@@ -645,6 +645,8 @@ require('lazy').setup({
 
         html = {},
 
+        jsonls = {},
+
         cpplint = {},
 
         lua_ls = {
@@ -703,6 +705,9 @@ require('lazy').setup({
         'bash-debug-adapter',
         'shellharden',
         'shfmt',
+        'jsonlint',
+        'json-lsp',
+        'fixjson',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -755,6 +760,7 @@ require('lazy').setup({
         yaml = { 'prettierd' },
         java = { 'jdtls' },
         kotlin = { 'kotlin-language-server' },
+        json = { 'fixjson ' },
 
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
