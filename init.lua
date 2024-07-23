@@ -468,6 +468,13 @@ require('lazy').setup({
       -- (sometimes called LSP servers, but that's kind of like ATM Machine) are standalone
       -- processes that communicate with some "client" - in this case, Neovim!
       --
+      vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+        group = vim.api.nvim_create_augroup('RestartPrettierd', { clear = true }),
+        pattern = '*prettier*',
+        callback = function()
+          vim.fn.system 'prettierd restart'
+        end,
+      })
       -- LSP provides Neovim with features like:
       --  - Go to definition
       --  - Find references
