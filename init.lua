@@ -627,7 +627,7 @@ require('lazy').setup({
         --    hhttps://github.com/pmizio/typescript-tools.nvimttps://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        tsserver = {},
+        -- tsserver = {},
 
         eslint = {
           on_attach = function(client, bufnr)
@@ -701,7 +701,7 @@ require('lazy').setup({
         'css-lsp',
         'html-lsp',
         'js-debug-adapter',
-        'typescript-language-server',
+        -- 'typescript-language-server',
         'tailwindcss-language-server',
         'kotlin-language-server',
         'kotlin-debug-adapter',
