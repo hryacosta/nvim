@@ -472,7 +472,7 @@ require('lazy').setup({
         group = vim.api.nvim_create_augroup('RestartPrettierd', { clear = true }),
         pattern = '*prettier*',
         callback = function()
-          vim.fn.system 'prettierd restart'
+          vim.fn.system 'prettier restart'
         end,
       })
       -- LSP provides Neovim with features like:
@@ -687,7 +687,8 @@ require('lazy').setup({
         'stylua', -- Used to format lua code
         'clangd',
         'clang-format',
-        'prettierd',
+        -- 'prettierd',
+        'prettier',
         'eslint_d',
         'eslint-lsp',
         'gradle-language-server',
@@ -752,19 +753,19 @@ require('lazy').setup({
       notify_on_error = true,
       formatters_by_ft = {
         lua = { 'stylua' },
-        javascript = { 'prettierd' },
-        javascriptreact = { 'prettierd' },
-        typescript = { 'prettierd' },
-        typescriptreact = { 'prettierd' },
-        html = { 'prettierd' },
+        javascript = { 'prettier' },
+        javascriptreact = { 'prettier' },
+        typescript = { 'prettier' },
+        typescriptreact = { 'prettier' },
+        html = { 'prettier' },
         -- sh = { 'beautysh', 'prettierd' },
         bash = { 'beautysh', 'shfmt' },
         dart_format = {
           command = '~/flutter/bin/dart',
         },
-        markdown = { 'prettierd' },
+        markdown = { 'prettier' },
         python = { 'black' },
-        yaml = { 'prettierd' },
+        yaml = { 'prettier' },
         java = { 'jdtls' },
         kotlin = { 'kotlin-language-server' },
         json = { 'fixjson ' },
@@ -791,11 +792,12 @@ require('lazy').setup({
         --   return
         -- end
 
-        local disable_filetypes = { c = true, cpp = true }
+        -- local disable_filetypes = { c = true, cpp = true }
         return {
-          timeout_ms = 500,
-          lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-          -- timeout_ms = 2500,
+          -- timeout_ms = 500,
+          -- lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+          lsp_fallback = true,
+          timeout_ms = 2500,
           -- lsp_fallback = true,
         }
       end,
@@ -804,6 +806,17 @@ require('lazy').setup({
         lsp_fallback = true,
       },
     },
+    config = function(_, opts)
+      local conform = require 'conform'
+
+      -- Setup "conform.nvim" to work
+      conform.setup(opts)
+
+      -- Customise the default "prettier" command to format Markdown files as well
+      conform.formatters.prettier = {
+        prepend_args = { '--prose-wrap', 'always' },
+      }
+    end,
   },
 
   { -- Autocompletion
