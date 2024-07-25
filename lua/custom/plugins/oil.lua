@@ -3,6 +3,10 @@ return {
     'stevearc/oil.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons', enabled = true },
     config = function()
+      vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
+      vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })
+      vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
+      vim.fn.sign_define('DiagnosticSignHint', { text = '󰌵', texthl = 'DiagnosticSignHint' })
       require('oil').setup {
         -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
         -- Set to false if you still want to use netrw.
@@ -11,9 +15,9 @@ return {
         -- See :help oil-columns
         columns = {
           'icon',
-          -- "permissions",
-          -- "size",
-          -- "mtime",
+          -- 'permissions',
+          'size',
+          -- 'mtime',
         },
         -- Buffer-local options to use for oil buffers
         buf_options = {
@@ -63,24 +67,20 @@ return {
         keymaps = {
           ['g?'] = 'actions.show_help',
           ['<CR>'] = 'actions.select',
-          ['<C-s>'] = 'actions.select_vsplit',
-          ['<C-h>'] = 'actions.select_split',
-          ['<C-t>'] = 'actions.select_tab',
+          ['<C-s>'] = { 'actions.select', opts = { vertical = true }, desc = 'Open the entry in a vertical split' },
+          ['<C-h>'] = { 'actions.select', opts = { horizontal = true }, desc = 'Open the entry in a horizontal split' },
+          ['<C-t>'] = { 'actions.select', opts = { tab = true }, desc = 'Open the entry in new tab' },
           ['<C-p>'] = 'actions.preview',
           ['<C-c>'] = 'actions.close',
           ['<C-l>'] = 'actions.refresh',
           ['-'] = 'actions.parent',
           ['_'] = 'actions.open_cwd',
           ['`'] = 'actions.cd',
-          ['~'] = 'actions.tcd',
+          ['~'] = { 'actions.cd', opts = { scope = 'tab' }, desc = ':tcd to the current oil directory' },
           ['gs'] = 'actions.change_sort',
           ['gx'] = 'actions.open_external',
           ['g.'] = 'actions.toggle_hidden',
           ['g\\'] = 'actions.toggle_trash',
-        },
-        -- Configuration for the floating keymaps help window
-        keymaps_help = {
-          border = 'rounded',
         },
         -- Set to false to disable all of the above keymaps
         use_default_keymaps = true,
@@ -105,6 +105,21 @@ return {
             { 'name', 'asc' },
           },
         },
+        -- Extra arguments to pass to SCP when moving/copying files over SSH
+        extra_scp_args = {},
+        -- EXPERIMENTAL support for performing file operations with git
+        git = {
+          -- Return true to automatically git add/mv/rm files
+          add = function(path)
+            return false
+          end,
+          mv = function(src_path, dest_path)
+            return false
+          end,
+          rm = function(path)
+            return false
+          end,
+        },
         -- Configuration for the floating window in oil.open_float
         float = {
           -- Padding around the floating window
@@ -115,6 +130,8 @@ return {
           win_options = {
             winblend = 0,
           },
+          -- preview_split: Split direction: "auto", "left", "right", "above", "below".
+          preview_split = 'auto',
           -- This is the config that will be passed to nvim_open_win.
           -- Change values here to customize the layout
           override = function(conf)
@@ -162,6 +179,10 @@ return {
         },
         -- Configuration for the floating SSH window
         ssh = {
+          border = 'rounded',
+        },
+        -- Configuration for the floating keymaps help window
+        keymaps_help = {
           border = 'rounded',
         },
       }
