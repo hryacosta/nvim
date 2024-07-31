@@ -1125,6 +1125,7 @@ require('lazy').setup({
         disable = {
           'dart',
           'json',
+          'typescript',
         },
       },
     },

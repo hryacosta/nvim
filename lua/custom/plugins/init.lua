@@ -115,7 +115,7 @@ wk.add {
     hidden = true,
   },
 }
-vim.opt.spell = true
-vim.opt.spelllang = { 'en', 'es' }
+-- vim.opt.spell = true
+-- vim.opt.spelllang = { 'en', 'es' }
 
 return {}
