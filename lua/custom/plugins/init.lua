@@ -60,17 +60,17 @@ wk.add {
     desc = 'trouble lsp references',
     mode = 'n',
   },
-  {
-    '<leader>ft',
-    function()
-      require('edgy').toggle 'bottom'
-    end,
-    desc = 'Open terminal',
-    mode = 'n',
-  },
+  -- {
+  --   '<leader>ft',
+  --   function()
+  --     require('edgy').toggle 'bottom'
+  --   end,
+  --   desc = 'Open terminal',
+  --   mode = 'n',
+  -- },
   { '<leader>l', '<cmd>Lspsaga term_toggle<cr>', desc = '[O]pen [T]erminal', mode = 'n', hidden = true },
 
-  { '<leader>e', vim.diagnostic.open_float, desc = 'Show diagnostic [E]rror messages', mode = 'n', hidden = true },
+  -- { '<leader>e', vim.diagnostic.open_float, desc = 'Show diagnostic [E]rror messages', mode = 'n', hidden = true },
   -- { '<leader>q', vim.diagnostic.setloclist, desc = 'Open diagnostic [Q]uickfix list', mode = 'n', hidden = true },
 
   {
