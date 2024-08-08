@@ -688,6 +688,7 @@ require('lazy').setup({
         'stylua', -- Used to format lua code
         'clangd',
         'clang-format',
+        'black',
         -- 'prettierd',
         'prettier',
         'eslint_d',
@@ -697,7 +698,6 @@ require('lazy').setup({
         'jdtls',
         'java-test',
         'java-debug-adapter',
-        -- 'node-debug2-adapter',
         'lua-language-server',
         -- 'rust_analizer',
         'css-lsp',
@@ -705,8 +705,6 @@ require('lazy').setup({
         'js-debug-adapter',
         -- 'typescript-language-server',
         'tailwindcss-language-server',
-        'kotlin-language-server',
-        'kotlin-debug-adapter',
         'ktlint',
         'cpplint',
         'bash-language-server',
@@ -759,16 +757,15 @@ require('lazy').setup({
         typescript = { 'prettier' },
         typescriptreact = { 'prettier' },
         html = { 'prettier' },
-        -- sh = { 'beautysh', 'prettierd' },
         bash = { 'beautysh', 'shfmt' },
         dart_format = {
           command = '~/flutter/bin/dart',
         },
         markdown = { 'prettier' },
-        python = { 'black' },
+        -- python = { 'black' },
         yaml = { 'prettier' },
         java = { 'jdtls' },
-        kotlin = { 'kotlin-language-server' },
+        -- kotlin = { 'kotlin-language-server' },
         json = { 'fixjson ' },
 
         -- Conform can also run multiple formatters sequentially
@@ -1120,13 +1117,31 @@ require('lazy').setup({
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
-      highlight = { enable = true },
+      highlight = {
+        enable = true,
+        -- disable = {
+        --   'json',
+        --   'typescript',
+        -- },
+        disable = function(lang, buf)
+          local max_filesize = 100 * 1024 -- 100 KB
+          local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+          if ok and stats and stats.size > max_filesize then
+            return true
+          end
+        end,
+
+        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+        -- Using this option may slow down your editor, and you may see some duplicate highlights.
+        -- Instead of true it can also be a list of languages
+        additional_vim_regex_highlighting = false,
+      },
       indent = {
         enable = true,
         disable = {
           'dart',
           'json',
-          'typescript',
         },
       },
     },
