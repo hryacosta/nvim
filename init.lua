@@ -619,8 +619,9 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         clangd = {},
-        -- gopls = {},
+        gopls = {},
         pyright = {},
+
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -690,8 +691,8 @@ require('lazy').setup({
         'stylua', -- Used to format lua code
         'clangd',
         'clang-format',
-        -- 'prettierd',
         'prettier',
+        'prettierd',
         'eslint_d',
         'eslint-lsp',
         'gradle-language-server',
@@ -699,10 +700,9 @@ require('lazy').setup({
         'jdtls',
         'java-test',
         'java-debug-adapter',
-        -- 'node-debug2-adapter',
         'lua-language-server',
         'rust-analyzer',
-        'rustywind',
+        'rustfmt',
         'snyk',
         'cpptools',
         'css-lsp',
@@ -758,12 +758,13 @@ require('lazy').setup({
     opts = {
       notify_on_error = true,
       formatters_by_ft = {
-        rust = { 'rustywind' },
+        -- rust = { 'rustywind' },
+        rust = { 'rustfmt', lsp_format = 'fallback' },
         lua = { 'stylua' },
-        javascript = { 'prettier' },
-        javascriptreact = { 'prettier' },
-        typescript = { 'prettier' },
-        typescriptreact = { 'prettier' },
+        javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+        typescript = { 'prettierd', 'prettier', stop_after_first = true },
+        typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
         html = { 'prettier' },
         -- sh = { 'beautysh', 'prettierd' },
         bash = { 'beautysh', 'shfmt' },
