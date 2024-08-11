@@ -619,7 +619,7 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         clangd = {},
-        gopls = {},
+        -- gopls = {},
         pyright = {},
 
         -- rust_analyzer = {},
@@ -688,7 +688,8 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format lua code
+        -- 'gopls',
+        'stylua',
         'clangd',
         'clang-format',
         'prettier',
@@ -722,6 +723,8 @@ require('lazy').setup({
         'jsonlint',
         'json-lsp',
         'fixjson',
+        'isort',
+        'black',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -772,14 +775,14 @@ require('lazy').setup({
           command = '~/flutter/bin/dart',
         },
         markdown = { 'prettier' },
-        python = { 'black' },
+        python = { 'isort', 'black' },
         yaml = { 'prettier' },
         java = { 'jdtls' },
         kotlin = { 'kotlin-language-server' },
         json = { 'fixjson ' },
 
         -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
+        -- python = { "isort", "bisortisortlack" },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
