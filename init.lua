@@ -703,6 +703,7 @@ require('lazy').setup({
         'lua-language-server',
         'rust-analyzer',
         'rustywind',
+        'snyk',
         'cpptools',
         'css-lsp',
         'html-lsp',
