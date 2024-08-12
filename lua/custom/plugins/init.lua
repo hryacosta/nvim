@@ -91,7 +91,7 @@ wk.add {
   },
 }
 vim.opt.spell = true
-vim.opt.spelllang = 'en_us'
+vim.opt.spelllang = { 'en_us', 'es' }
 
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
