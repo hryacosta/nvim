@@ -399,6 +399,7 @@ require('lazy').setup({
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'trouble')
       pcall(require('telescope').load_extension, 'lazygit')
+      pcall(require('telescope').load_extension 'flutter')
       require('telescope').load_extension 'undo'
 
       -- See `:help telescope.builtin`

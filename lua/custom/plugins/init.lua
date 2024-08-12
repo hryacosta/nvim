@@ -14,60 +14,35 @@ wk.add {
   { '<leader>gg', vim.cmd.LazyGit, desc = 'LazyGit', mode = 'n' },
   {
     '<leader>xx',
-    function()
-      require('trouble').toggle()
-    end,
-    desc = 'trouble toggle',
-    mode = 'n',
+    '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
+    desc = 'Buffer Diagnostics (Trouble)',
   },
   {
     '<leader>xw',
-    function()
-      require('trouble').toggle 'workspace_diagnostics'
-    end,
-    desc = 'toggle workspace diagnostics',
-    mode = 'n',
+    '<cmd>Trouble diagnostics toggle<cr>',
+    desc = 'Diagnostics (Trouble)',
   },
   {
-    '<leader>xd',
-    function()
-      require('trouble').toggle 'document_diagnostics'
-    end,
-    desc = 'toggle document diagnostics',
-    mode = 'n',
-  },
-  {
-    '<leader>xq',
-    function()
-      require('trouble').toggle 'quickfix'
-    end,
-    desc = 'trouble quickfix',
-    mode = 'n',
+    '<leader>xs',
+    '<cmd>Trouble symbols toggle focus=false<cr>',
+    desc = 'Symbols (Trouble)',
   },
   {
     '<leader>xl',
-    function()
-      require('trouble').toggle 'loclist'
-    end,
-    desc = 'trouble loclist',
-    mode = 'n',
+    '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
+    desc = 'LSP Definitions / references / ... (Trouble)',
   },
   {
-    'gR',
-    function()
-      require('trouble').toggle 'lsp_references'
-    end,
-    desc = 'trouble lsp references',
-    mode = 'n',
+    '<leader>xl',
+    '<cmd>Trouble loclist toggle<cr>',
+    desc = 'Location List (Trouble)',
   },
-  -- {
-  --   '<leader>ft',
-  --   function()
-  --     require('edgy').toggle 'bottom'
-  --   end,
-  --   desc = 'Open terminal',
-  --   mode = 'n',
-  -- },
+  {
+    '<leader>xq',
+    '<cmd>Trouble qflist toggle<cr>',
+    desc = 'Quickfix List (Trouble)',
+  },
+
   { '<leader>l', '<cmd>Lspsaga term_toggle<cr>', desc = '[O]pen [T]erminal', mode = 'n', hidden = true },
 
   -- { '<leader>e', vim.diagnostic.open_float, desc = 'Show diagnostic [E]rror messages', mode = 'n', hidden = true },
@@ -115,8 +90,9 @@ wk.add {
     hidden = true,
   },
 }
--- vim.opt.spell = true
--- vim.opt.spelllang = { 'en', 'es' }
+vim.opt.spell = true
+vim.opt.spelllang = 'en_us'
+
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
 vim.api.nvim_create_autocmd('BufWritePre', {
