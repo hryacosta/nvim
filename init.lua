@@ -776,7 +776,7 @@ require('lazy').setup({
         python = { 'isort', 'black' },
         yaml = { 'prettier' },
         java = { 'jdtls' },
-        kotlin = { 'kotlin-language-server' },
+        kotlin = { 'kotlinlanguage-server' },
         json = { 'fixjson ' },
 
         -- Conform can also run multiple formatters sequentially
