@@ -761,7 +761,6 @@ require('lazy').setup({
     opts = {
       notify_on_error = true,
       formatters_by_ft = {
-        -- rust = { 'rustywind' },
         rust = { 'rustfmt', lsp_format = 'fallback' },
         lua = { 'stylua' },
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
@@ -769,7 +768,6 @@ require('lazy').setup({
         typescript = { 'prettierd', 'prettier', stop_after_first = true },
         typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
         html = { 'prettier' },
-        -- sh = { 'beautysh', 'prettierd' },
         bash = { 'beautysh', 'shfmt' },
         dart_format = {
           command = '~/flutter/bin/dart',
