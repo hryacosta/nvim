@@ -632,7 +632,18 @@ require('lazy').setup({
         -- But for many setups, the LSP (`tsserver`) will work just fine
         -- tsserver = {},
 
-        rust_analyzer = {},
+        rust_analyzer = {
+          enable = false,
+          diagnostics = { enable = true },
+          checkOnSave = { enable = true },
+          cargo = {
+            allFeatures = true,
+          },
+        },
+
+        -- bacon_ls = {
+        --   enable = true,
+        -- },
 
         eslint = {
           on_attach = function(client, bufnr)
@@ -705,7 +716,8 @@ require('lazy').setup({
         'lua-language-server',
         'rust-analyzer',
         'rustfmt',
-        'snyk',
+        'bacon-ls',
+        'bacon',
         'cpptools',
         'css-lsp',
         'html-lsp',
