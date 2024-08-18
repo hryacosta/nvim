@@ -620,7 +620,7 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         clangd = {},
-        -- gopls = {},
+        gopls = {},
         pyright = {},
 
         -- rust_analyzer = {},
@@ -700,7 +700,14 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        -- 'gopls',
+        'gopls',
+        'go-debug-adapter',
+        'gofumpt',
+        'goimports',
+        'goimports-reviser',
+        'golines',
+        'gomodifytags',
+        'gotests',
         'stylua',
         'clangd',
         'clang-format',
@@ -774,6 +781,7 @@ require('lazy').setup({
     opts = {
       notify_on_error = true,
       formatters_by_ft = {
+        go = { 'gofumpt', 'goimports', 'goimports-reviser', 'golines', 'gomodifytags' },
         rust = { 'rustfmt', lsp_format = 'fallback' },
         lua = { 'stylua' },
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
