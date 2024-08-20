@@ -5,6 +5,12 @@
 
 local wk = require 'which-key'
 
+vim.filetype.add {
+  extension = {
+    arb = 'json',
+  },
+}
+
 wk.add {
   { '-', '<cmd>Oil<cr>', desc = 'Open parent directory', mode = 'n', hidden = true },
   { '<leader>k', '<cmd>Neotree source=filesystem toggle<cr>', desc = 'Open Neotree', mode = 'n', hidden = true },
@@ -90,10 +96,7 @@ wk.add {
     hidden = true,
   },
 }
-vim.opt.spell = true
-vim.opt.spelllang = { 'en_us', 'es' }
-
-vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+-- vim.opt.formatexpr = "v:lua.require'conform'.formatexpr()"
 
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*',
