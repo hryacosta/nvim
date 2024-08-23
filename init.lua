@@ -1099,7 +1099,13 @@ require('lazy').setup({
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
+    version = '*',
     config = function()
+      require('mini.indentscope').setup()
+      require('mini.git').setup()
+      require('mini.animate').setup()
+      -- require('mini.icons').setup()
+
       -- Better Around/Inside textobjects
       --
       -- Examples:
