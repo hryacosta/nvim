@@ -1104,7 +1104,6 @@ require('lazy').setup({
       require('mini.indentscope').setup()
       require('mini.git').setup()
       require('mini.animate').setup()
-      -- require('mini.icons').setup()
 
       -- Better Around/Inside textobjects
       --
