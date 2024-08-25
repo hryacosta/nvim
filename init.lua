@@ -735,7 +735,7 @@ require('lazy').setup({
         'tailwindcss-language-server',
         'kotlin-language-server',
         'kotlin-debug-adapter',
-        'ktlint',
+        'ktfmt',
         'cpplint',
         'bash-language-server',
         'beautysh',
@@ -799,7 +799,7 @@ require('lazy').setup({
         python = { 'isort', 'black' },
         yaml = { 'prettier' },
         java = { 'jdtls' },
-        kotlin = { 'kotlinlanguage-server' },
+        kotlin = { 'ktfmt' },
         json = { 'fixjson ' },
 
         -- Conform can also run multiple formatters sequentially
