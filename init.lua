@@ -658,8 +658,6 @@ require('lazy').setup({
 
         kotlin_language_server = {},
 
-        ktlint = {},
-
         jdtls = {},
 
         tailwindcss = {},
