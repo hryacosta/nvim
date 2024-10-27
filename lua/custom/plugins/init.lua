@@ -29,16 +29,6 @@ wk.add {
     desc = 'Diagnostics (Trouble)',
   },
   {
-    '<C-g>',
-    function()
-      local gfh_actions = require('telescope').extensions.git_file_history.actions
-      gfh_actions.open_in_browser()
-    end,
-    desc = 'Open in browser (Git File History)',
-    mode = 'n',
-  },
-
-  {
     '<leader>xs',
     '<cmd>Trouble symbols toggle focus=false<cr>',
     desc = 'Symbols (Trouble)',

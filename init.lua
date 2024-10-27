@@ -402,8 +402,7 @@ require('lazy').setup({
       pcall(require('telescope').load_extension, 'trouble')
       pcall(require('telescope').load_extension, 'lazygit')
       pcall(require('telescope').load_extension 'flutter')
-      require('telescope').load_extension 'git_file_history'
-      require('telescope').load_extension 'undo'
+      pcall(require('telescope').load_extension 'undo')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
