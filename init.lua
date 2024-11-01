@@ -623,7 +623,6 @@ require('lazy').setup({
       local servers = {
         clangd = {},
         gopls = {},
-        pyright = {},
 
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -662,18 +661,22 @@ require('lazy').setup({
 
         tailwindcss = {},
 
-        pylsp = {
-          settings = {
-            pylsp = {
-              plugins = {
-                pycodestyle = {
-                  ignore = { 'W391' },
-                  maxLineLength = 100,
-                },
-              },
-            },
-          },
-        },
+        -- pylsp = {
+        --   settings = {
+        --     pylsp = {
+        --       plugins = {
+        --         pycodestyle = {
+        --           ignore = { 'W391' },
+        --           maxLineLength = 100,
+        --         },
+        --       },
+        --     },
+        --   },
+        -- },
+
+        -- pyright = {},
+
+        ruff_lsp = {},
 
         bashls = {},
 
@@ -733,6 +736,7 @@ require('lazy').setup({
         'eslint_d',
         'eslint-lsp',
         'gradle-language-server',
+        'pyright',
         'dart-debug-adapter',
         'jdtls',
         'java-test',
@@ -761,6 +765,8 @@ require('lazy').setup({
         'json-lsp',
         'fixjson',
         'black',
+        'ruff-lsp',
+        'ruff',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -810,7 +816,13 @@ require('lazy').setup({
           command = '~/flutter/bin/dart',
         },
         markdown = { 'prettier' },
-        python = { 'isort' },
+        python = function(bufnr)
+          if require('conform').get_formatter_info('ruff_format', bufnr).available then
+            return { 'ruff_format' }
+          else
+            return { 'isort', 'black' }
+          end
+        end,
         yaml = { 'prettier' },
         java = { 'jdtls' },
         kotlin = { 'ktfmt' },
