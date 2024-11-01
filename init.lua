@@ -662,6 +662,19 @@ require('lazy').setup({
 
         tailwindcss = {},
 
+        pylsp = {
+          settings = {
+            pylsp = {
+              plugins = {
+                pycodestyle = {
+                  ignore = { 'W391' },
+                  maxLineLength = 100,
+                },
+              },
+            },
+          },
+        },
+
         bashls = {},
 
         cssls = {},
@@ -703,6 +716,10 @@ require('lazy').setup({
         'gopls',
         'go-debug-adapter',
         'gofumpt',
+        'python-lsp-server',
+        'pyright',
+        'isort',
+        'pylint',
         'goimports',
         'goimports-reviser',
         'golines',
@@ -743,7 +760,6 @@ require('lazy').setup({
         'jsonlint',
         'json-lsp',
         'fixjson',
-        'isort',
         'black',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -794,7 +810,7 @@ require('lazy').setup({
           command = '~/flutter/bin/dart',
         },
         markdown = { 'prettier' },
-        python = { 'isort', 'black' },
+        python = { 'isort' },
         yaml = { 'prettier' },
         java = { 'jdtls' },
         kotlin = { 'ktfmt' },
