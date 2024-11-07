@@ -736,7 +736,6 @@ require('lazy').setup({
         'eslint_d',
         'eslint-lsp',
         'gradle-language-server',
-        'pyright',
         'dart-debug-adapter',
         'jdtls',
         'java-test',
@@ -820,7 +819,7 @@ require('lazy').setup({
           if require('conform').get_formatter_info('ruff_format', bufnr).available then
             return { 'ruff_format' }
           else
-            return { 'isort', 'black' }
+            return { 'isort', 'black', 'ruff' }
           end
         end,
         yaml = { 'prettier' },
