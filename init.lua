@@ -676,7 +676,7 @@ require('lazy').setup({
 
         -- pyright = {},
 
-        ruff_lsp = {},
+        ruff = {},
 
         bashls = {},
 

@@ -58,6 +58,8 @@ return {
         constrain_cursor = 'editable',
         -- Set to true to watch the filesystem for changes and reload oil
         experimental_watch_for_changes = false,
+        -- Set to true to watch the filesystem for changes and reload oil
+        watch_for_changes = false,
         -- Keymaps in oil buffer. Can be any value that `vim.keymap.set` accepts OR a table of keymap
         -- options with a `callback` (e.g. { callback = function() ... end, desc = "", mode = "n" })
         -- Additionally, if it is a string that matches "actions.<name>",
@@ -98,6 +100,8 @@ return {
           -- Sort file names in a more intuitive order for humans. Is less performant,
           -- so you may want to set to false if you work with large directories.
           natural_order = true,
+          -- Sort file and directory names case insensitive
+          case_insensitive = false,
           sort = {
             -- sort order can be "asc" or "desc"
             -- see :help oil-columns to see which columns are sortable
@@ -130,6 +134,8 @@ return {
           win_options = {
             winblend = 0,
           },
+          -- optionally override the oil buffers window title with custom function: fun(winid: integer): string
+          get_win_title = nil,
           -- preview_split: Split direction: "auto", "left", "right", "above", "below".
           preview_split = 'auto',
           -- This is the config that will be passed to nvim_open_win.
@@ -138,8 +144,13 @@ return {
             return conf
           end,
         },
-        -- Configuration for the actions floating preview window
-        preview = {
+        -- Configuration for the file preview window
+        preview_win = {
+          -- Whether the preview window is automatically updated when the cursor is moved
+          update_on_cursor_moved = true,
+        },
+        -- Configuration for the floating action confirmation window
+        confirmation = {
           -- Width dimensions can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
           -- min_width and max_width can be a single value or a list of mixed integer/float types.
           -- max_width = {100, 0.8} means "the lesser of 100 columns or 80% of total"
