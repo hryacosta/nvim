@@ -659,6 +659,8 @@ require('lazy').setup({
 
         jdtls = {},
 
+        yamlls = {},
+
         tailwindcss = {},
 
         -- pylsp = {
@@ -766,6 +768,8 @@ require('lazy').setup({
         'black',
         'ruff-lsp',
         'ruff',
+        'cfn-lint',
+        'yaml-language-server',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -805,10 +809,10 @@ require('lazy').setup({
         go = { 'gofumpt', 'goimports', 'goimports-reviser', 'golines', 'gomodifytags' },
         rust = { 'rustfmt', lsp_format = 'fallback' },
         lua = { 'stylua' },
-        javascript = { 'prettierd', 'prettier', stop_after_first = true },
-        javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
-        typescript = { 'prettierd', 'prettier', stop_after_first = true },
-        typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+        javascript = { 'prettierd', 'prettier' },
+        javascriptreact = { 'prettierd', 'prettier' },
+        typescript = { 'prettierd', 'prettier' },
+        typescriptreact = { 'prettierd', 'prettier' },
         html = { 'prettier' },
         bash = { 'beautysh', 'shfmt' },
         dart_format = {
@@ -822,7 +826,7 @@ require('lazy').setup({
             return { 'isort', 'black', 'ruff' }
           end
         end,
-        yaml = { 'prettier' },
+        yaml = {},
         java = { 'jdtls' },
         kotlin = { 'ktfmt' },
         json = { 'fixjson ' },

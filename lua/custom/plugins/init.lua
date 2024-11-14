@@ -136,6 +136,7 @@ vim.keymap.set('i', '<tab>', function()
   else
     return '<tab>'
   end
-end, { expr = true })
+end)
+-- , { expr = true })
 
 return {}
