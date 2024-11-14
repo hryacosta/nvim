@@ -128,4 +128,14 @@ vim.api.nvim_create_autocmd('TermEnter', {
   end,
 })
 
+vim.keymap.set('i', '<tab>', function()
+  if require('tabnine.keymaps').has_suggestion() then
+    return require('tabnine.keymaps').accept_suggestion()
+  elseif require('luasnip').jumpable(1) then
+    return require('luasnip').jump(1)
+  else
+    return '<tab>'
+  end
+end, { expr = true })
+
 return {}

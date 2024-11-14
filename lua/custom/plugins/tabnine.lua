@@ -13,7 +13,7 @@ return {
         codelens_enabled = true,
         exclude_filetypes = { 'TelescopePrompt', 'NvimTree' },
         log_file_path = nil,
-        -- log_file_path = "./log/",
+        ignore_certificate_errors = false,
       }
     end,
   },
