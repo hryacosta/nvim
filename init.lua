@@ -766,7 +766,7 @@ require('lazy').setup({
         'json-lsp',
         'fixjson',
         'black',
-        'ruff-lsp',
+        -- 'ruff-lsp',
         'ruff',
         'cfn-lint',
         'yaml-language-server',
