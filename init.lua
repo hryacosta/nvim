@@ -1105,13 +1105,13 @@ require('lazy').setup({
       vim.cmd.hi 'Comment gui=none'
     end,
     config = function()
-      -- require('tokyonight').setup {
-      --   transparent = true,
-      --   styles = {
-      --     sidebars = 'transparent',
-      --     floats = 'transparent',
-      --   },
-      -- }
+      require('tokyonight').setup {
+        transparent = true,
+        styles = {
+          sidebars = 'transparent',
+          floats = 'transparent',
+        },
+      }
     end,
   },
 
