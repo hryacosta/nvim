@@ -657,6 +657,8 @@ require('lazy').setup({
 
         kotlin_language_server = {},
 
+        kotlin = {},
+
         jdtls = {},
 
         yamlls = {},
@@ -770,6 +772,7 @@ require('lazy').setup({
         'ruff',
         'cfn-lint',
         'yaml-language-server',
+        'ktlint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -828,7 +831,9 @@ require('lazy').setup({
         end,
         yaml = {},
         java = { 'jdtls' },
-        kotlin = { 'ktfmt' },
+        kotlin = {
+          'ktfmt', --[[ 'ktlint'  ]]
+        },
         json = { 'fixjson ' },
 
         -- Conform can also run multiple formatters sequentially
