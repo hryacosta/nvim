@@ -352,6 +352,10 @@ require('lazy').setup({
       {
         'debugloop/telescope-undo.nvim',
       },
+
+      {
+        'smartpde/telescope-recent-files',
+      },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -393,6 +397,9 @@ require('lazy').setup({
             require('telescope.themes').get_dropdown(),
           },
           'undo',
+          recent_files = {
+            only_cwd = true,
+          },
         },
       }
 
@@ -403,6 +410,7 @@ require('lazy').setup({
       pcall(require('telescope').load_extension, 'lazygit')
       pcall(require('telescope').load_extension 'flutter')
       pcall(require('telescope').load_extension 'undo')
+      pcall(require('telescope').load_extension, 'recent-files')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
