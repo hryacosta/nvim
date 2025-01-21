@@ -126,6 +126,7 @@ vim.api.nvim_create_autocmd('TermEnter', {
   end,
 })
 
+--- Integration with Tabnine and LuaSnip; falling back to inserting tab if neither has a completion
 vim.keymap.set('i', '<tab>', function()
   if require('tabnine.keymaps').has_suggestion() then
     return require('tabnine.keymaps').accept_suggestion()
@@ -134,7 +135,6 @@ vim.keymap.set('i', '<tab>', function()
   else
     return '<tab>'
   end
-end)
--- , { expr = true })
+end, { expr = true })
 
 return {}
