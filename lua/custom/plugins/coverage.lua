@@ -1,15 +1,11 @@
 return {
   {
     'andythigpen/nvim-coverage',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-    },
-    rocks = { 'lua-xmlreader' },
+    version = '*',
     config = function()
-      require('coverage').setup()
-    end,
-    init = function()
-      require('coverage').setup()
+      require('coverage').setup {
+        auto_reload = true,
+      }
     end,
   },
 }
