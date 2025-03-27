@@ -665,8 +665,6 @@ require('lazy').setup({
 
         kotlin_language_server = {},
 
-        kotlin = {},
-
         jdtls = {},
 
         yamlls = {},
