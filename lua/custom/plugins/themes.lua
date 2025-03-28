@@ -1,5 +1,14 @@
 return {
   {
+    'Mofiqul/adwaita.nvim',
+    config = function()
+      -- vim.g.adwaita_darker = true
+      vim.g.adwaita_disable_cursorline = true
+      vim.g.adwaita_transparent = true
+      vim.cmd 'colorscheme adwaita'
+    end,
+  },
+  {
     'projekt0n/github-nvim-theme',
     config = function()
       require('github-theme').setup {
@@ -87,7 +96,7 @@ return {
     'rose-pine/neovim',
     name = 'rose-pine',
     config = function()
-      vim.cmd 'colorscheme rose-pine'
+      -- vim.cmd 'colorscheme rose-pine'
     end,
   },
 }
