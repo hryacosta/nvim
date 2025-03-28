@@ -13,7 +13,7 @@ return {
         log_file_path = nil,
         ignore_certificate_errors = false,
         workspace_folders = {
-          paths = { '/Users/henry/Proyectos' },
+          paths = { '/Users/henryacosta/Proyectos' },
           get_paths = function()
             return { 'mftech-p2p-mobile' }
           end,
