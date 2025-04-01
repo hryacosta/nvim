@@ -11,6 +11,12 @@ vim.filetype.add {
   },
 }
 wk.add {
+  {
+    '<C-q>',
+    '<cmd>q<cr>',
+    desc = 'easy close',
+  },
+
   { '<leader><leader>', [[<cmd>lua require('telescope').extensions.recent_files.pick()<CR>]], desc = 'telescope recent opened files', mode = 'n' },
   { '-', '<cmd>Oil<cr>', desc = 'Open parent directory', mode = 'n', hidden = true },
   { '<leader>k', '<cmd>Neotree source=filesystem toggle<cr>', desc = 'Open Neotree', mode = 'n', hidden = true },
