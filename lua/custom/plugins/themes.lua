@@ -1,8 +1,25 @@
 return {
   {
-    'Mofiqul/adwaita.nvim',
+    'folke/tokyonight.nvim',
     config = function()
-      -- vim.g.adwaita_darker = true
+      require('tokyonight').setup {
+        style = 'storm',
+        transparent = true,
+        styles = {
+          sidebars = 'transparent',
+          floats = 'transparent',
+        },
+      }
+      -- vim.cmd 'colorscheme tokyonight'
+    end,
+  },
+
+  {
+    'Mofiqul/adwaita.nvim',
+    -- lazy = false,
+    -- priority = 1000,
+    config = function()
+      vim.g.adwaita_darker = true
       vim.g.adwaita_disable_cursorline = true
       vim.g.adwaita_transparent = true
       vim.cmd 'colorscheme adwaita'
@@ -64,30 +81,30 @@ return {
   {
     'rebelot/kanagawa.nvim',
     config = function()
-      require('kanagawa').setup {
-        compile = false, -- enable compiling the colorscheme
-        undercurl = true, -- enable undercurls
-        commentStyle = { italic = true },
-        -- functionStyle = {},
-        keywordStyle = { italic = true },
-        statementStyle = { bold = true },
-        -- typeStyle = {},
-        transparent = false, -- do not set background color
-        dimInactive = false, -- dim inactive window `:h hl-NormalNC`
-        terminalColors = true, -- define vim.g.terminal_color_{0,17}
-        -- colors = { -- add/modify theme and palette colors
-        --   palette = {},
-        --   theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
-        -- },
-        -- overrides = function(colors) -- add/modify highlights
-        --   return {}
-        -- end,
-        theme = 'lotus', -- Load "wave" theme when 'background' option is not set
-        background = { -- map the value of 'background' option to a theme
-          dark = 'wave', -- try "dragon" !
-          light = 'lotus',
-        },
-      }
+      -- require('kanagawa').setup {
+      --   compile = false, -- enable compiling the colorscheme
+      --   undercurl = true, -- enable undercurls
+      --   commentStyle = { italic = true },
+      --   -- functionStyle = {},
+      --   keywordStyle = { italic = true },
+      --   statementStyle = { bold = true },
+      --   -- typeStyle = {},
+      --   transparent = false, -- do not set background color
+      --   dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+      --   terminalColors = true, -- define vim.g.terminal_color_{0,17}
+      --   -- colors = { -- add/modify theme and palette colors
+      --   --   palette = {},
+      --   --   theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+      --   -- },
+      --   -- overrides = function(colors) -- add/modify highlights
+      --   --   return {}
+      --   -- end,
+      --   theme = 'lotus', -- Load "wave" theme when 'background' option is not set
+      --   background = { -- map the value of 'background' option to a theme
+      --     dark = 'wave', -- try "dragon" !
+      --     light = 'lotus',
+      --   },
+      -- }
 
       -- vim.cmd 'colorscheme kanagawa'
     end,
